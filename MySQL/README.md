@@ -1,6 +1,7 @@
 # Curso de MySQL
+
 <p align="center">
-<img src="https://cdn.clever-cloud.com/uploads/2023/03/mysql.svg" width="500ppx">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" width="230px">
 </p>
 
 ## Módulo 1: Introducción a MySQL
@@ -145,3 +146,64 @@ SELECT COUNT(*) FROM nombre_tabla;
 ```sql
 SELECT edad, COUNT(*) FROM nombre_tabla GROUP BY edad;
 ```
+
+## Módulo 5: Joins y Relaciones
+
+**Ejemplo de Joins:**
+
+```sql
+SELECT a.nombre, b.nombre_asignatura
+FROM alumnos a
+JOIN asignaturas b ON a.id = b.alumno_id;
+```
+
+**Creación de Índices:**
+
+```sql
+CREATE INDEX idx_nombre ON nombre_tabla(nombre);
+```
+
+**Creación de Vistas:**
+
+```sql
+CREATE VIEW vista_alumnos AS
+SELECT nombre, edad FROM nombre_tabla WHERE edad > 18;
+```
+
+**Gestión de Usuarios:**
+
+```sql
+CREATE USER 'nuevo_usuario'@'localhost' IDENTIFIED BY 'contraseña';
+GRANT ALL PRIVILEGES ON nombre_base_datos.* TO 'nuevo_usuario'@'localhost';
+```
+
+
+## Módulo 6: Copias de Seguridad y Restauración
+
+**Hacer Copias de Seguridad:**
+
+```bash
+mysqldump -u usuario -p nombre_base_datos > copia.sql
+```
+
+**Restaurar desde una Copia de Seguridad:**
+
+```bash
+mysql -u usuario -p nombre_base_datos < copia.sql
+```
+
+
+## Módulo 7: Optimización y Rendimiento
+
+**Análisis de Consultas:**
+
+```bash
+mysqldump -u usuario -p nombre_base_datos > copia.sql
+```
+
+**Restaurar desde una Copia de Seguridad:**
+
+```sql
+EXPLAIN SELECT * FROM nombre_tabla WHERE edad > 20;
+```
+
