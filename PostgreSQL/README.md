@@ -26,4 +26,38 @@ PostgreSQL utiliza un rol de usuario para gestionar las conexiones. Por defecto,
 
 `p\q`
 
-## Módulo 2: Crear un nuevo usuario y base de datos
+**Crear un nuevo rol (usuario):**
+
+```sql
+CREATE USER nombre_usuario WITH PASSWORD 'contraseña';
+```
+
+**Crear una nueva base de datos:**
+
+```sql
+CREATE DATABASE nombre_base_datos;
+```
+
+**Conceder permisos al usuario para esa base de datos::**
+
+```sql
+GRANT ALL PRIVILEGES ON DATABASE nombre_base_datos TO nombre_usuario;
+```
+
+## Módulo 2: Creación de Bases de Datos y Tablas
+
+**Crear una base de datos:**
+
+```sql
+CREATE DATABASE nombre_base_datos;
+```
+
+**Crear una tabla:**
+
+```sql
+CREATE TABLE nombre_tabla (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    edad INT
+);
+```
