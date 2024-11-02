@@ -125,6 +125,34 @@ En esta consulta, seleccionamos productos que:
 * Tienen un precio mayor a 100 o un stock mayor a 10, y además
 * Pertenecen a la categoría con categoria_id igual a 2.
 
+**Ejemplo con mas condiciones:**
+
+Supongamos que tenemos la siguiente tabla productos
+
+| id | Nombre | precio | stock | categoria_id|
+|----|--------|--------|-------|-------------|
+| 1  | Laptop | 1200   | 5     | 2           |
+| 2  | Teclado| 20     | 50    | 1           |
+| 3  | Mouse  | 10     | 150   | 1           |
+| 4  | Monitor| 300    | 20    | 2           |
+
+Con esta tabla, podemos hacer una consulta avanzada:
+
+```sql
+SELECT * FROM productos
+WHERE (precio > 50 AND stock < 50) OR (categoria_id = 1 AND stock > 100);
+```
+
+Esta consulta selecciona productos que:
+
+* Tienen un precio mayor a 50 y un stock menor a 50, o
+* Pertenecen a la categoría 1 y tienen un stock mayor a 100.
+
+
+| id | Nombre | precio | stock | categoria_id|
+|----|--------|--------|-------|-------------|
+| 1  | Laptop | 1200   | 5     | 2           |
+| 3  | Mouse  | 10     | 150   | 1           |
 
 ### Ordenamiento y Paginación de Resultados
 
@@ -174,3 +202,62 @@ SELECT * FROM productos
 ORDER BY precio ASC
 LIMIT 5 OFFSET 5;
 ```
+
+### Ejemplo Completo de Ordenamiento y Paginación
+
+Supongamos que tenemos la siguiente tabla productos
+
+| id | Nombre   | precio | stock | categoria_id|
+|----|----------|--------|-------|-------------|
+|1	 | Laptop   | 1200   |	5	 | 2
+|2	 | Teclado  | 20	 | 50	 | 1
+|3	 | Mouse    | 10	 | 150	 | 1
+|4	 | Monitor  | 300	 | 20	 | 2
+|5	 | Impresora| 150	 | 30	 | 2
+|6	 | Tablet	| 200	 | 15	 | 1
+
+Si queremos ver los productos ordenados por precio de forma descendente y mostrar solo los primeros 3:
+
+```sql
+SELECT * FROM productos
+ORDER BY precio DESC
+LIMIT 3;
+```
+
+| id | Nombre   | precio | stock | categoria_id|
+|----|----------|--------|-------|-------------|
+|1	 | Laptop   | 1200   | 5	 | 2
+|4	 | Monitor  | 300	 | 20	 | 2
+|6	 | Tablet	|200	 | 15	 | 1
+
+Si queremos mostrar la “segunda página” con 3 registros por página, debemos utilizar OFFSET para omitir los primeros 3:
+
+```sql
+SELECT * FROM productos
+ORDER BY precio DESC
+LIMIT 3 OFFSET 3;
+```
+
+| id | Nombre   | precio | stock | categoria_id|
+|----|----------|--------|-------|-------------|
+|5	 | Impresora| 150	 | 30	 | 2
+|2	 | Teclado  | 20	 | 50	 | 1
+|3	 | Mouse    | 10	 | 150	 | 1
+
+### Actualización y Eliminación de Registros
+
+```sql
+UPDATE productos SET precio = 1100.00 WHERE nombre = 'Laptop';
+DELETE FROM productos WHERE nombre = 'Teclado';
+```
+
+### Actualización y Eliminación de Registros
+
+**Uso de Funciones de Agregación (COUNT, SUM, AVG, etc.):**
+
+```sql
+SELECT COUNT(*) AS total_productos FROM productos;
+SELECT AVG(precio) AS precio_promedio FROM productos;
+```
+
+### Agrupación de Datos con GROUP BY y HAVING
